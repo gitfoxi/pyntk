@@ -1,0 +1,12 @@
+
+Ci
+*.o
+*.so
+*.bak
+*.pyc
+Makefile.old
+makefile.srcs
+*.swp
+*.swn
+*.swo
+.gdbinit
