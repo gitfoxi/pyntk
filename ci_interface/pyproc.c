@@ -35,6 +35,8 @@
  */
 #include <python2.7/Python.h>
 #include <stdio.h>
+#include <unistd.h>
+#include <stdlib.h>
 
 /*
  *-- module include -------------------------------------------------------
@@ -129,13 +131,11 @@
  *
  ***************************************************************************/
 
-#include <stdio.h>
-#include <unistd.h>
 
 
 int firstcall = 1;
 // Change me to python location or use a system call to set me like "which python"
-static char *pyprog = "/home/m/opt/bin/python";
+static char *pyprog = "../../../python/opt/bin/python2.7";
 void py (
         char  *parm_list_input,
         int    parmcount,
@@ -147,18 +147,20 @@ void py (
   int pyret;
   char buf[65535];
   getcwd(buf,65535);
+  char pythonhome[1000];
+  sprintf(pythonhome,"%s/../python/opt",buf);
+  setenv("PYTHONHOME",pythonhome,1);
   static PyObject *px, *global_dict, *main_module, *x_str_obj;
   char *x_str;
   char *waste;
   char *tmp;
-  char *progname;
   char *py_argv[2];
 
   printf("py running: %s\nfrom directory: %s\n\n",parm_list_input,buf);
   tmp=buf;
   waste=buf;
   while( (tmp = strstr(tmp+1,"waste")) !=NULL ) waste=tmp;
-  sprintf( waste, "py/main.py" );
+  sprintf( waste, "o58_test_table/main.py" );
   py_argv[0]="";
   py_argv[1]=0;
 
@@ -195,8 +197,8 @@ void py (
 
     PySys_SetArgv(1,py_argv);
     PyRun_SimpleString("import sys");
-    PyRun_SimpleString("sys.path.append('../py')");
-    PyRun_SimpleString("sys.path.append('../py/contrib')");
+    PyRun_SimpleString("sys.path.append('../o58_test_table')");
+    PyRun_SimpleString("sys.path.append('../o58_test_table/pyntk')");
 //    PyRun_SimpleString("from ci_util import *");
     PyRun_SimpleString("from main import *");
     PyRun_SimpleString("print sys.version");
@@ -216,6 +218,7 @@ void py (
   
   strcpy(comment_out,x_str);
   *comlen = strlen(comment_out);
+  fprintf(stderr,"%s\n",comment_out);
   
 
   if( pyret != 0  ) {

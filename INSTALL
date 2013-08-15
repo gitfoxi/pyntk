@@ -1,0 +1,41 @@
+Installation instructions for pyntk
+
+pyntk is free software; you can redistribute it and/or modify it under the
+terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2 of the License, or (at your option) any later
+version. distcc comes with ABSOLUTELY NO WARRANTY, for details see the
+LICENSE.
+
+If you have issues or want the latest source, go to https://github.com/gitfoxi/pyntk
+
+INSTRUCTIONS
+============
+
+Prerequisites
+-------------
+
+Python 2.7.1  
+smarTest 5.4.3
+
+  -- Other versions may work. 
+  -- It is necessary to have a working ctypes library for python.
+
+Installation
+------------
+
+pyntk consists of two parts:
+
+    1. ci_interface
+    2. pyntk
+
+ci_interface must be built with your 
+
+
+
+Testing
+-------
+
+To test your installation, you should run the example unit-tests.
+Unfortunately, they haven't been written yet.
+
+     

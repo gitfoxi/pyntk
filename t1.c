@@ -1,14 +1,14 @@
 
+#include "Python.h"
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
 #include <errno.h>
 #include <assert.h>
-#include "/opt/hp93000/soc/pws/lib/tpi_c.h"
+#include "tpi_c.h"
 #include "adiUserI.h"
 #include "ci_types.h"
 #include "libcicpi.h"
-#include <python2.2/Python.h>
 
 #define BUF_LEN 65536
 
@@ -29,6 +29,7 @@ INT32 fw_ret;
 //
 // WARNING: Will die horribly if buffers overflow.
 //
+/*
 char* fw(char* cmd) {
   INT32 cmd_len,ans_len;
 
@@ -99,3 +100,4 @@ int test_throw_error() {
   throw_error("test_throw_error succeeded.");
   return 1;
 }
+*/
