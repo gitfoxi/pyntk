@@ -1,4 +1,6 @@
 
+*.swp
+tags
 *.pyc
 *.bak
 *.o

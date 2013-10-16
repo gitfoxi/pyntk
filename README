@@ -1,17 +1,21 @@
-
 PYNTK
+=====
 
 The goal of this project is to provide Python tools and libraries for use with
 the 93k.
 
+
 Installation
+------------
 
-Just type make to build. Be sure you have the right version of smarTest selected.
+Just type `make` to build. Be sure you have the right version of smarTest
+selected with `switch_version`.
 
-To build the user procedure, link it to your userprocedures and have a look at. The source file is:
+To build the user procedure, link it to your userprocedures.
+The source file is:
+
   ci_interface/pyproc.c
 
 You may need to add a few things to your make file, see:
+
   ci_interface/Makefile
-
-

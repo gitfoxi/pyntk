@@ -3,7 +3,10 @@
 """
 Implement library calls to MCD.
 
-TODO: Maybe I should call HpInit on load and HpTerm on del?
+TODO: Maybe I should call HpInit on load and HpTerm on del? Well, `del` is not
+guaranteed to be called ever so need to look into what the `atexit` equivalent
+is for Python.
+
 """
 
 import sys
@@ -22,7 +25,9 @@ HpTerm.restype=None
 HpFwTask=t1.HpFwTask
 HpFwTask.restype=None
 
-def fw(task,anslen=4096):
+# TODO: figure out how to auto-size this anslen or default to maximum size
+# There must be some provision for continuation, right?
+def fw(task,anslen=65535):
   """
   Run a firmware task and return the response.
   Default is to use a 4096-byte buffer. Make it bigger if you expect a big response.
@@ -449,7 +454,7 @@ def GetWaferDimensions():
   if res:
     # Error occured
     raise ValueError
-  return ( cminX.value, cmaxX.value, cminY.value, cmaxY.value \
+  return ( cminX.value, cmaxX.value, cminY.value, cmaxY.value, \
       cquadrant.value, corientation.value )
 
 def SetWaferDimensions( minX, maxX, minY, maxY, quadrant, orientation):
@@ -623,7 +628,7 @@ if __name__ == "__main__":
     print fw("rlyc? (@);",50)
   except:
     # expect exception
-    pass
+    print "You were supposed to see that buffer warning. That means it's working"
   else:
     print >>sys.stderr, "Ouch rlyc should have choked."
   SetRepeatMode('REPEAT_ONCE')
